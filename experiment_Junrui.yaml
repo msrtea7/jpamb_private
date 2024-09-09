@@ -1,0 +1,74 @@
+# The group-name:
+group_name: "null"
+
+# Answer true if the data you provide can be used anonomized for science!
+for_science: true
+
+# Underneath here add the tools which you want to run
+tools:
+  solution_ljr:
+    
+    technologies:
+      - python
+
+    executable:
+      - python
+      - solutions/analysis_Junrui.py
+      
+  #   apriori: 
+  #   # The technologies used, all lowercase:
+  #   # choose between "syntactic", "dynamic" and "static"
+  #   # you can add extra tags if you need like "concolic"
+
+  #    technologies:
+  #     - statistical
+  #     - python
+
+  #   # Here you can either use the path to an executable 
+  #   # Remember to make it executable (use `chmod`) 
+  #   # Or, you can provide a list of arguments, like here:
+  #   executable: 
+  #     - python 
+  #     - solutions/apriori.py
+  
+  # conservative: 
+  #   technologies:
+  #     - python
+    
+  #   executable: 
+  #     - python
+  #     - solutions/conservative.py
+
+  # bytecoder: 
+  #   technologies:
+  #     - bytecode
+  #     - syntactic
+  #     - static
+  #     - python
+
+  #   executable: 
+  #     - python
+  #     - solutions/bytecoder.py
+
+  
+  # syntaxer: 
+  #   technologies:
+  #     - tree-sitter
+  #     - syntactic
+  #     - static
+  #     - python
+
+  #   executable: 
+  #     - python
+  #     - solutions/syntaxer.py
+
+
+# Some info about the machine who ran the experiments:
+machine:
+  # Choose between "macosx", "linux" and "windows"
+  os: macosx
+  # some text about the processor
+  processor: "Apple M2"
+  # some text about the memory
+  memory: "24G"
+
