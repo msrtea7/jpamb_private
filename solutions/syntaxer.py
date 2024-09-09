@@ -1,6 +1,5 @@
 #!/usr/bin/env python3
-""" A very stupid syntatic analysis, that only checks for assertion errors.
-"""
+"""A very stupid syntatic analysis, that only checks for assertion errors."""
 
 import os
 import sys, logging
