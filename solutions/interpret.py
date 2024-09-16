@@ -117,6 +117,19 @@ class SimpleInterpreter:
             self.stack.pop(0)
         self.done = "ok"
 
+    def step_dup(self):
+        if self.stack:
+            self.stack.insert(0, self.stack[0])
+        self.pc += 1
+
+    def step_get(self, bc):
+        field = bc.get('field', {})
+        field_name = field.get('name')
+        value = False if field_name == "$assertionsDisabled" else None
+        self.stack.insert(0, value)
+        self.pc += 1
+
+
 
 if __name__ == "__main__":
     methodid = MethodId.parse(sys.argv[1])
