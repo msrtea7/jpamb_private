@@ -18,6 +18,7 @@ class SimpleInterpreter:
     locals: list
     stack: list
     pc: int = 0
+    pc: int = 0
     done: Optional[str] = None
 
     def interpet(self, limit=10):
