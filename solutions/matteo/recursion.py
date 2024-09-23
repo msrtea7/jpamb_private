@@ -30,4 +30,4 @@ def analyze_recursive_risk(body_node, source_code):
         if not has_base_case:
             risk_score += 30  # Higher risk if no clear base case is found
     
-    return min(risk_score, 60)  # Cap at 60%
+    return min(risk_score, 90)  # Cap at 60%

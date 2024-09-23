@@ -11,4 +11,4 @@ def analyze_array_risk(array_nodes, source_code):
         elif capture[0] == "array_creation_expression":
             if "null" in array_text:
                 risk_score += 20
-    return min(risk_score, 60)  # Cap at 60%
+    return min(risk_score, 90)  # Cap at 60%

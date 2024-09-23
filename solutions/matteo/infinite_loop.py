@@ -36,4 +36,4 @@ def analyze_infinite_loop_risk(body_node, source_code):
             if not re.search(r'i\s*[<>]=?\s*\w+', loop_text):  # No comparison with a variable
                 risk_score += 10
     
-    return min(risk_score, 50)  # Cap at 50%
+    return min(risk_score, 90)  # Cap at 50%

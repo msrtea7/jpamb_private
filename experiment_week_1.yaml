@@ -1,12 +1,12 @@
 # The group-name:
-group_name: "The Rice' Theorem Cookers"
+group_name: "Harmony"
 
 # Answer true if the data you provide can be used anonomized for science!
 for_science: true
 
 # Underneath here add the tools which you want to run
 tools:
-  Matteo: 
+  test: 
     # The technologies used, all lowercase:
     # choose between "syntactic", "dynamic" and "static"
     # you can add extra tags if you need like "concolic"

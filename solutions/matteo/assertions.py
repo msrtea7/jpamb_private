@@ -14,4 +14,4 @@ def analyze_assertion_risk(assert_nodes, source_code):
             risk_score += 15
         else:
             risk_score += 15
-    return min(risk_score, 70)  # Cap at 70%
+    return min(risk_score, 90)  # Cap at 70%
