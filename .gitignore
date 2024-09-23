@@ -14,4 +14,4 @@ timer/sieve.exe
 result.json
 progress.html
 .venv
-.vscode/launch.json
+jpamb_utils.egg-info/
