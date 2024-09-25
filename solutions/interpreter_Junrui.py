@@ -129,7 +129,6 @@ class SimpleInterpreter:
     # 是否要在所有方法前检查 if not self.stack: raise RuntimeError("Stack underflow: No elements in the stack to throw.")
     def step_push(self, bc):
         print("--- step_push content: ", bc, "---")
-        print("push value: ", bc["value"]["value"])
         self.stack.insert(0, bc["value"]["value"])
         self.pc += 1
 
@@ -161,9 +160,18 @@ class SimpleInterpreter:
     def step_new(self, bc):
         # Object_name = bc.get("class").split("/")[-1]
         # new_object = {"class", Object_name}
-
         self.stack.insert(0, bc.get("class"))
         self.pc += 1
+
+    def step_invoke(self, bc):
+        # very poor one, assuming all good
+        method = bc.get("method", {})
+        if method.get("name") == "<init>" and method.get("ref").get(
+            "name"
+        ) == self.stack.pop(0):
+            self.pc += 1
+        else:
+            print("Wroooooooooong method")
 
     def step_dup(self, bc):
         if self.stack:
@@ -173,10 +181,8 @@ class SimpleInterpreter:
 
     def step_throw(self, bc):
         # Pop the reference (exception object) from the stack
-        # exception_ref = self.stack.pop()
-        # 我这里只直接print这个error而不终止程序，因为这时候md没有error对象离谱
-        print("!ERRRRRRRRRRRRRRRRRROR! This fraction of code bug is not fixed")
-        self.pc += bc.get("offset")
+
+        self.pc += 1
 
 
 if __name__ == "__main__":
@@ -195,3 +201,4 @@ if __name__ == "__main__":
     print(methodid.create_interpreter(inputs).interpet())
 
     # python solutions/interpreter_Junrui.py "jpamb.cases.Simple.assertBoolean:(Z)V" "(false)"
+    # python solutions/interpreter_Junrui.py "jpamb.cases.Simple.assertInteger:(I)V" "(0)"
