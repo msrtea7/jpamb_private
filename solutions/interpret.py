@@ -45,13 +45,15 @@ class SimpleInterpreter:
         return self.done
 
     def step_push(self, bc):
-        val = bc["value"]
+        val = bc["value"]["value"]
         if val is not None:
-            if bc["type"] == "integer":
-                return IntValue(bc["value"])
+            if bc["value"]["type"] == "integer" or bc["type"] == "int" or bc["type"] == "integer":
+                self.stack.insert(0, val)
+                self.pc += 1
+                return IntValue(bc["value"]["value"])
             raise ValueError(f"Currently unknown value {bc}")
 
-        self.stack.insert(0, val)
+       # self.stack.insert(0, val)
         self.pc += 1
 
     def step_return(self, bc):
@@ -70,6 +72,42 @@ class SimpleInterpreter:
         value = False if field_name == "$assertionsDisabled" else None
         self.stack.insert(0, value)
         self.pc += 1
+
+    def step_ifz(self, bc):
+        val = self.stack.pop(0)
+        if val is not None:
+            if val != 0:
+                self.pc = bc["target"]
+            else:
+                self.pc += 1
+        else: 
+            self.pc += 1
+
+
+    def step_new(self, bc):
+        class_name = bc.get("class", {}).get("name")
+
+        if class_name == "java/lang/AssertionError":
+            new_object = {"class": "AssertionError"} 
+            self.stack.insert(0, new_object)
+        self.pc += 1
+
+    def step_invoke(self, bc):
+        method = bc["method"]
+        if method["name"] == "<init>" and method["ref"]["name"] == "java/lang/AssertionError":
+            self.stack.pop(0)
+        self.pc += 1
+
+
+
+    def step_throw(self, bc):
+        thrown_exception = self.stack.pop(0)
+        if thrown_exception["class"] == "AssertionError":
+            self.done = "AssertionError thrown"
+
+
+        self.pc += 1
+
 
 
 
